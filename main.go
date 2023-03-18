@@ -16,7 +16,7 @@ func main() {
 	httpClient := oauth2.NewClient(context.Background(), src)
 	client := githubv4.NewClient(httpClient)
 
-	type _context struct {
+	type Context struct {
 		CheckRun struct {
 			Conclusion githubv4.CheckConclusionState
 			DetailsUrl githubv4.URI
@@ -35,7 +35,7 @@ func main() {
 				Commit struct {
 					StatusCheckRollup struct {
 						Contexts struct {
-							Nodes []_context
+							Nodes []Context
 						} `graphql:"contexts(first: 100)"`
 					}
 					AbbreviatedOid string
