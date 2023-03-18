@@ -91,6 +91,6 @@ func main() {
 	if f {
 		log.Println("all success")
 	} else {
-		log.Fatalln("TODO")
+		log.Fatalln("failed to run CI successfully, at least one CI has failed")
 	}
 }
