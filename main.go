@@ -24,7 +24,6 @@ func main() {
 	}
 	owner := ownerRepositoryName[0]
 	repositoryName := ownerRepositoryName[1]
-	log.Println(owner, repositoryName) // TODO
 
 	src := oauth2.StaticTokenSource(
 		&oauth2.Token{AccessToken: token},
@@ -56,10 +55,17 @@ func main() {
 					}
 					AbbreviatedOid string
 				} `graphql:"... on Commit"`
-			} `graphql:"object(expression: \"8cab9ceabc5e0af9a6d407b80357a\")"`
-		} `graphql:"repository(owner: \"tokizuoh\", name: \"citrus\")"`
+			} `graphql:"object(expression: $expression)"`
+		} `graphql:"repository(owner: $owner, name: $name)"`
 	}
-	err := client.Query(context.Background(), &query, nil)
+
+	variables := map[string]interface{}{
+		"owner":      githubv4.String(owner),
+		"name":       githubv4.String(repositoryName),
+		"expression": githubv4.String(sha),
+	}
+
+	err := client.Query(context.Background(), &query, variables)
 	if err != nil {
 		log.Fatal(err)
 	}
