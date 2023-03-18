@@ -48,7 +48,7 @@ func TestCheckAllSuccess(t *testing.T) {
 				t.Fatalf("error occured: %v", err)
 			}
 			if got != tt.want {
-				t.Fatalf("checkAllSuccess() =%vm want %v", got, tt.want)
+				t.Fatalf("checkAllSuccess()=%v, want %v", got, tt.want)
 			}
 		})
 	}
