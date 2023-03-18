@@ -48,14 +48,24 @@ func main() {
 		log.Fatal(err)
 	}
 
-	// TODO: Handle
-	for _, n := range query.Repository.Object.Commit.StatusCheckRollup.Contexts.Nodes {
-		// log.Println(n.CheckRun.Name)
-		// log.Println(n.CheckRun.Conclusion)
-		log.Println(n.CheckRun.DetailsUrl)
-		// log.Println(n.StatusContext.Context)
-		// log.Println(n.StatusContext.State)
-		log.Println(n.StatusContext.TargetUrl)
-		log.Println("---")
+	f := true
+	for _, node := range query.Repository.Object.Commit.StatusCheckRollup.Contexts.Nodes {
+		if node.CheckRun.Name != "" {
+			if node.CheckRun.Conclusion != githubv4.CheckConclusionStateSuccess {
+				f = false
+			}
+		} else if node.StatusContext.Context != "" {
+			if node.StatusContext.State != githubv4.StatusStateSuccess {
+				f = false
+			}
+		} else {
+			log.Fatal("failed to expand inline fragment")
+		}
+	}
+
+	if f {
+		log.Println("all success")
+	} else {
+		log.Fatalln("TODO")
 	}
 }
