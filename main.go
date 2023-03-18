@@ -33,7 +33,6 @@ type Query struct {
 						Nodes []Context
 					} `graphql:"contexts(first: 100)"`
 				}
-				AbbreviatedOid string
 			} `graphql:"... on Commit"`
 		} `graphql:"object(expression: $expression)"`
 	} `graphql:"repository(owner: $owner, name: $name)"`
