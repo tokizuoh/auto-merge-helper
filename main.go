@@ -20,7 +20,7 @@ func main() {
 
 	ownerRepositoryName := strings.Split(repository, "/")
 	if len(ownerRepositoryName) != 2 {
-		log.Fatalln("TODO")
+		log.Fatalf("failed to split the \"%s\" as expected.", repository)
 	}
 	owner := ownerRepositoryName[0]
 	repositoryName := ownerRepositoryName[1]
