@@ -15,7 +15,7 @@ func main() {
 	repository := os.Getenv("GITHUB_REPOSITORY")
 	sha := os.Getenv("GITHUB_SHA")
 	if token == "" || repository == "" || sha == "" {
-		log.Fatalln("not exist expected environment variable")
+		log.Fatalln("failed to retrieve expected environment variable")
 	}
 
 	ownerRepositoryName := strings.Split(repository, "/")
