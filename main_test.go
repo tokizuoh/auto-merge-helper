@@ -25,6 +25,8 @@ func TestCheckAllSuccess(t *testing.T) {
 						githubv4.URI{},
 						"check_run_1",
 					},
+				},
+				{
 					StatusContext: struct {
 						State     githubv4.StatusState
 						TargetUrl githubv4.URI
