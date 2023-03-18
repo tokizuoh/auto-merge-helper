@@ -40,6 +40,34 @@ func TestCheckAllSuccess(t *testing.T) {
 			},
 			want: true,
 		},
+		{
+			name: "all_failure",
+			args: []Context{
+				{
+					CheckRun: struct {
+						Conclusion githubv4.CheckConclusionState
+						DetailsUrl githubv4.URI
+						Name       string
+					}{
+						githubv4.CheckConclusionStateFailure,
+						githubv4.URI{},
+						"check_run_1",
+					},
+				},
+				{
+					StatusContext: struct {
+						State     githubv4.StatusState
+						TargetUrl githubv4.URI
+						Context   string
+					}{
+						githubv4.StatusStateFailure,
+						githubv4.URI{},
+						"status_context_1",
+					},
+				},
+			},
+			want: true,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
