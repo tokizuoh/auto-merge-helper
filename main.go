@@ -73,6 +73,9 @@ func main() {
 	f := true
 	for _, node := range query.Repository.Object.Commit.StatusCheckRollup.Contexts.Nodes {
 		if node.CheckRun.Name != "" {
+			if node.CheckRun.Name == "auto-merge-helper" {
+				continue
+			}
 			if node.CheckRun.Conclusion != githubv4.CheckConclusionStateSuccess {
 				f = false
 			}
