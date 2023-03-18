@@ -4,6 +4,7 @@ import (
 	"context"
 	"log"
 	"os"
+	"strings"
 
 	"github.com/shurcooL/githubv4"
 	"golang.org/x/oauth2"
@@ -16,6 +17,14 @@ func main() {
 	if token == "" || repository == "" || sha == "" {
 		log.Fatalln("not exist expected environment variable")
 	}
+
+	ownerRepositoryName := strings.Split(repository, "/")
+	if len(ownerRepositoryName) != 2 {
+		log.Fatalln("TODO")
+	}
+	owner := ownerRepositoryName[0]
+	repositoryName := ownerRepositoryName[1]
+	log.Println(owner, repositoryName) // TODO
 
 	src := oauth2.StaticTokenSource(
 		&oauth2.Token{AccessToken: token},
