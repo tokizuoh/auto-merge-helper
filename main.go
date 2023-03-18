@@ -10,8 +10,15 @@ import (
 )
 
 func main() {
+	token := os.Getenv("GITHUB_TOKEN")
+	repository := os.Getenv("GITHUB_REPOSITORY")
+	sha := os.Getenv("GITHUB_SHA")
+	if token == "" || repository == "" || sha == "" {
+		log.Fatalln("not exist expected environment variable")
+	}
+
 	src := oauth2.StaticTokenSource(
-		&oauth2.Token{AccessToken: os.Getenv("GITHUB_TOKEN")},
+		&oauth2.Token{AccessToken: token},
 	)
 	httpClient := oauth2.NewClient(context.Background(), src)
 	client := githubv4.NewClient(httpClient)
