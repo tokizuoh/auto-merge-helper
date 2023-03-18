@@ -84,7 +84,7 @@ func main() {
 				f = false
 			}
 		} else {
-			log.Fatal("failed to expand inline fragment")
+			log.Fatal("invalid inline fragment: does not match the expected type")
 		}
 	}
 
