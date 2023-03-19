@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"strings"
@@ -33,7 +34,7 @@ func main() {
 	}
 
 	if ok {
-		log.Println("all success")
+		fmt.Println("All CI's are SUCCESS!")
 	} else {
 		log.Fatalln("failed to run CI successfully, at least one CI has failed")
 	}
