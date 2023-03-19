@@ -7,6 +7,7 @@ import (
 )
 
 func main() {
+	// https://docs.github.com/en/actions/learn-github-actions/variables#default-environment-variables
 	token := os.Getenv("GITHUB_TOKEN")
 	repository := os.Getenv("GITHUB_REPOSITORY")
 	sha := os.Getenv("GITHUB_SHA")
