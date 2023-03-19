@@ -57,7 +57,7 @@ func checkAllSuccess(ctxs []Context) (bool, error) {
 	return f, nil
 }
 
-func fetch(token, owner, repositoryName, sha string) (*Query, error) {
+func fetch(token, owner, repoName, sha string) (*Query, error) {
 	src := oauth2.StaticTokenSource(
 		&oauth2.Token{AccessToken: token},
 	)
@@ -67,7 +67,7 @@ func fetch(token, owner, repositoryName, sha string) (*Query, error) {
 	query := Query{}
 	variables := map[string]interface{}{
 		"owner":      githubv4.String(owner),
-		"name":       githubv4.String(repositoryName),
+		"name":       githubv4.String(repoName),
 		"expression": githubv4.String(sha),
 	}
 

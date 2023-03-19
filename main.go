@@ -14,14 +14,14 @@ func main() {
 		log.Fatalln("failed to retrieve expected environment variable")
 	}
 
-	ownerRepositoryName := strings.Split(repository, "/")
-	if len(ownerRepositoryName) != 2 {
+	ownerRepoName := strings.Split(repository, "/")
+	if len(ownerRepoName) != 2 {
 		log.Fatalf("failed to split the \"%s\" as expected.", repository)
 	}
-	owner := ownerRepositoryName[0]
-	repositoryName := ownerRepositoryName[1]
+	owner := ownerRepoName[0]
+	repoName := ownerRepoName[1]
 
-	query, err := fetch(token, owner, repositoryName, sha)
+	query, err := fetch(token, owner, repoName, sha)
 	if err != nil {
 		log.Fatalln(err)
 	}
